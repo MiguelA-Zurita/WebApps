@@ -1,0 +1,35 @@
+#divEsquerra, #divDreta{
+    margin-top: 10px;
+    padding: 10px;
+    border: 1px dotted black;
+    width:33%
+}
+
+#divEsquerra{
+    float: left;
+    margin-left: 10px;
+    text-align: left;
+}
+
+#divDreta{
+    float: right;
+    margin-right: 10px;
+    text-align: right;
+}
+#divCentral{
+    position: absolute;
+    clear: both;
+    width: 35%;
+    text-align: right;
+    bottom: 50%;
+    left: 30%;
+}
+
+footer{
+    color: white;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    background-color: #868484;
+}
