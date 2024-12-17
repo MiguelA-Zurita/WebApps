@@ -9,7 +9,6 @@ html, body{
     width: 100%;
     height: 100%;
     font-family: "Old French", sans-serif;
-    font-size: 11pt;
     background-image: url(../img/paisaje.webp);
     background-size: cover;
     color: #fff
@@ -155,6 +154,7 @@ footer{
     width: 100%;
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     justify-content: space-around;
 }
 
