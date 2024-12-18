@@ -21,7 +21,7 @@ html, body{
 header{
     background-color: #021C1E;
     text-align: center;
-    padding: 10px 10px;
+    padding: 10px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -169,7 +169,7 @@ img{
     background-color: #2C7873ab;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    grid-gap: 10px;
+    gap: 10px;
     justify-content: space-evenly;
     align-items: center;
     width: 100%;
