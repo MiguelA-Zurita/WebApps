@@ -1,19 +1,22 @@
+/*Importación de fuente*/
 @font-face {
     font-family: "Old French";
     src: url(../Fonts/meta-old-french/meta-old-french.ttf);
 }
-
+ /*Estilo de raíz*/
 html, body{
     margin: 0;
     padding: 0;
     width: 100%;
-    height: 100%;
+    height: auto;
     font-family: "Old French", sans-serif;
     background-image: url(../img/paisaje.webp);
     background-size: cover;
-    color: #fff
-    
+    color: #fff;
+    display:flex;
+    flex-direction: column;
 }
+ /*Cabecera de página*/
 
 header{
     background-color: #021C1E;
@@ -23,9 +26,7 @@ header{
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    position: relative;
-    left: 5%;
-    top: 1%;
+    align-self: center;
     width: 90%;
     border-radius: 10px;
     box-shadow: 0 0 10px #000;
@@ -38,15 +39,6 @@ header > img{
     object-fit: contain;
 }
 
-header nav ul{
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    align-items: center;
-}
 
 header ul{
     list-style-type: none;
@@ -58,10 +50,25 @@ header ul{
     align-items: center;
 }
 
+/* Menú de navegación*/
+header nav ul{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+/*Iconos de banderas*/
+
 .icono{
     width: 1.5rem;
     object-fit: contain;
 }
+
+/*Contenido principal*/
 
 main{
     width: 100%;
@@ -86,20 +93,80 @@ img{
     object-fit: contain;
 }
 
+/*Sección about us*/
+
 .Aboutus{
-    background-color: #2C7873;
+    background-color: #2C7873ab;
     margin-top: 12px;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+    grid-auto-flow: row;
+    margin-top: 15px;
+}
+
+.Aboutus div{
+    align-self: center;
+}
+
+.Aboutus h2{
+    grid-area: 1/1/1/1;
+    margin: 0;
+    text-align: center;
+}
+
+.Aboutus p{
+    grid-area: 2/1/2/1;
+    margin: 0;
 }
 
 .Aboutus img{
     width: 100%;
+    height: 80%;
     object-fit: contain;
+    grid-area: 1/2/2/2;
+    align-self: center;
 }
 
+/*Sección Services*/
+
 .Services{
-    background-color:#2fb98fab;
+    background-color:#2C7873ab;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-gap: 10px;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+}
+
+.Services h2{
+    margin: 0;
+    padding: 10px;
+    text-align: center;
+    grid-area: 1/1/1/5;
+}
+
+.Services-items{
+    background-color: #fff;
+    color: #000;
+    border-radius: 10px;
+    box-shadow: 0 0 10px #000;
+    margin: 10px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+.Services-items img{
+    width: 22%;
+    height: 50%;
+    object-fit: contain;
+}
+/*Sección Portfolio*/
+
+.Portfolio{
+    background-color: #2C7873ab;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-gap: 10px;
@@ -108,25 +175,57 @@ img{
     width: 100%;
 }
 
-.Contactus{
-    background-color: #2C7873;
+.Portfolio h2{
+    background-color: #fff;
+    margin: 0;
+    padding: 10px;
+    text-align: center;
+    grid-area: 1/1/1/4;
 }
 
+/*Seccion Contact us*/
+
+.Contactus{
+    background-color: #2C7873ab;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.Contactus h2{
+    margin: 0;
+    padding: 10px;
+    text-align: center;
+}
+
+/*Formulario de contacto*/
+
 form{
-    display: grid;
-    position: relative;
-    left: 25%;
     grid-template-columns:1em 40%; 
     justify-content: space-evenly;
     align-items: center;
-    width: 40%;
-    background-color: #fff;
+    align-self: center;
+    width: auto;
     color: #000;
-    font-weight: bold;
-    border-radius: 10px;
-    box-shadow: 0 0 10px #000;
     padding: 10px;
-    gap:10px;
+    
+}
+
+fieldset{
+    display: grid;
+    background-color: #fff;
+    border: 1px solid #000;
+    border-radius: 10px;
+    padding: 10px;
+    width:50%;
+    max-height: 200px;
+    max-width: 150px;
+}
+
+label{
+    font-weight: bold;
+    font-size: 1.2em;
+    margin: 5px 5px;
 }
 
 .Contactus input[type="text"],.Contactus input[type="email"], .Contactus textarea{
@@ -135,17 +234,25 @@ form{
     border: 1px solid #000;
 }
 
+.Contactus textarea{
+    min-width: 300px;
+    max-width: 300px;
+    min-height: 100px;
+    max-height: 100px;
+}
+
 .Contactus input:last-child{
     grid-area: 4/2;
     background-color: #19b0fc;
     color: black;
     border: none;
-    border-radius: 2px;
     padding: 5px;
     font-weight: bold;
     cursor: pointer;
+    border-radius: 10px;
 }
 
+/* estilos de pie */
 footer{
     background-color: #021C1E;
     color: #fff;
@@ -209,6 +316,10 @@ ul li a {
 
     header{
         justify-content: center;
+    }
+
+    footer{
+        flex-direction: column;
     }
 }
 
