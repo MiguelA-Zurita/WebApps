@@ -3,17 +3,16 @@
  
  function enlarge(){
    let paragraf = document.getElementById('paragraf');
-   let computed = window.getComputedStyle(paragraf, null)
-   let exampleFontSize = parseInt(computed.getPropertyValue("font-size"));
+   let exampleFontSize = window.getComputedStyle(paragraf).getPropertyValue("font-size");
    let value = parseInt(exampleFontSize) + 2;
-   paragraf.style.fontSize = value + "pt";
+   paragraf.style.fontSize = value + "px";
  }
 
  function lower(){
-   let paragraf = document.getElementById('paragraf');
-   let exampleFontSize = parseInt(paragraf.style.getPropertyValue("font-size"));
-   let value = exampleFontSize - 2;
-   paragraf.style.fontSize = value + "pt";
+  let paragraf = document.getElementById('paragraf');
+  let exampleFontSize = window.getComputedStyle(paragraf).getPropertyValue("font-size");
+  let value = parseInt(exampleFontSize) - 2;
+  paragraf.style.fontSize = value + "px";
  }
 
  function changeColor(){
@@ -23,5 +22,5 @@
    } else{
     actualColor++;
    }
-   paragraf.style.setProperty("color", colors[actualColor]);
+   paragraf.style.color = colors[actualColor];
  }
