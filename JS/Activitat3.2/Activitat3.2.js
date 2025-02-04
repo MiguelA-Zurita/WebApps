@@ -35,6 +35,10 @@
 
  function removeText(){
   let paragraph = document.getElementsByClassName("addedText");
-  let lastParagraph = paragraph[paragraph.length-1];
-  lastParagraph.remove();
+  if (paragraph.length == 0){
+    alert("There are no paragraphs to remove");
+  } else{
+    let lastParagraph = paragraph[paragraph.length-1];
+    lastParagraph.remove();
+  }
  }
