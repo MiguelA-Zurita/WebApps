@@ -3,17 +3,15 @@ html, body{
     width: 100%;
     margin: 0;
     padding: 0;
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 12pt;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16pt;
 }
 
 header{
-    display:grid;
-    /*grid: ;
-    grid-template: ;
-    grid-template-columns: ;*/
-    grid-auto-rows: 100%;
+    position: relative;
+    display: flex;
     justify-content: space-between;
+    justify-items: stretch;
     align-items: center;
     width: 100%;
     background-color: hotpink;
@@ -21,14 +19,22 @@ header{
 }
 
 #icono{
-    height: 100%;
+    height: 70%;
     width: 10%;
     object-fit: contain;
 }
 
+nav{
+    align-items: center;
+    align-self: center;
+}
+
 nav ul{
+    display: flex;
+    gap: 30px;
     list-style-type: none;
     align-self: center;
+    margin: 0;
 }
 
 nav ul li{
@@ -38,7 +44,6 @@ nav ul li{
 nav ul li a{
     text-decoration: none;
     color: black;
-    padding: 5px;
 }
 
 nav ul li a:hover{
@@ -56,6 +61,7 @@ nav ul li a:hover{
     display: none;
     margin:10px;
     object-fit: contain;
+    cursor: pointer;
 }
 
 
@@ -64,19 +70,28 @@ nav ul li a:hover{
 @media only screen and (min-width: 768px) and (max-width: 991px) {
 
     #hamburguer{
-        display: inline;
+        display: inline-block;
     }
 
-    nav{
+    nav ul{
         display: none;
     }
 
-    .modoHamburguesa{
-        display:block;
+    .modoHamburguesa ul{
+        display:flex;
+        position: absolute;
+        top: 100%;
+        right: 0;
+        width: 100%;
+        flex-direction: column;
+        border: 0.5px solid black;
+        text-align: center;
+        background-color: hotpink;
     }
 
     .modoHamburguesa ul li{
         float: none;
+        margin: 20px;
     }
 }
 
@@ -84,19 +99,27 @@ nav ul li a:hover{
 
 @media only screen and (max-width: 767px) {
     #hamburguer{
-        display:inline;
+        display:inline-block;
     }
     
     #busqueda{
         display: none;
     }
 
-    nav{
+    nav ul{
         display:none;
     }
 
-    .modoHamburguesa{
-        display:block;
+    .modoHamburguesa ul{
+        display:flex;
+        position: absolute;
+        top: 100%;
+        right: 0;
+        width: 100%;
+        flex-direction: column;
+        border: 0.5px solid black;
+        text-align: center;
+        background-color: hotpink;
     }
 
     .modoHamburguesa ul li{
