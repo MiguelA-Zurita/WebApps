@@ -15,10 +15,11 @@ const buscador = document.getElementById("busqueda");
 
 buscador.addEventListener("input", function(buscarCamiseta){
     busqueda = buscador.value.toLowerCase();
-    document.querySelectorAll("img").forEach(imagen => {
-        let titulo = imagen.nextSibling.innerText
-        if (titulo == busqueda){
-            
+    document.querySelectorAll(".tituloCamiseta").forEach(titulo => {
+        if (titulo.innerText.toLowerCase().includes(busqueda)){
+            titulo.parentNode.style.display = "flex";  
+        } else{
+            titulo.parentNode.style.display = "none";
         }
     });
     
