@@ -1,0 +1,191 @@
+/* Zurita_MiguelAngel_Estils.css */
+
+/* Estilos generales  */
+html, body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333333;
+    height: 100%;
+    width: 100%;
+}
+
+header {
+    background-color: #041adb;
+    color: #ffffff;
+    text-align: center;
+    width: 100%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+/*Estilos de navegación */
+nav {
+    position: absolute;
+    width: 15%;
+    background-color: #4c5eff;
+    height: auto;
+    min-height: 100%;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+nav ul li {
+    margin-bottom: 10px;
+    padding: 10px;
+    text-align: center;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+nav ul li a {
+    color: #ffffff;
+    text-decoration: none;
+}
+/* Estilos de body */
+main {
+    position: relative;
+    left: 15%;
+    width: 85%;
+    height: 100%;
+    background-color: rgb(98, 178, 252);
+    overflow: none;
+}
+
+footer {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    background-color: #333333;
+    color: #ffffff;
+    text-align: center;
+}
+.catalogo{
+    width: 100%;
+    height: auto;
+    min-height: 100%;
+    background-color: rgb(98, 178, 252);
+    overflow: none;
+}
+
+.producto{
+    float: left;
+    position: relative;
+    background-color: #ffffff;
+    border: 1px solid #333333;
+    padding: 10px;
+    border-radius:5px;
+    margin: 20px;
+    align-content: center;
+    text-align: center;
+    width: 300px;
+    height: 550px;
+    transition: 0.5s;
+}
+
+.producto img{
+    width: 120px;
+    height: 120px;
+}
+
+.producto h2{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    text-align: center;
+    color: #333333;
+    font-size: 20pt;
+}
+
+.catalogo > h2{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    text-align: center;
+    color: #ffffff;
+    font-size: 40pt;
+}
+
+h2, h3{
+    margin: 0px;
+    padding: 20px;
+    font-size: 20pt;
+    text-align: center;
+}
+
+p{
+    padding-left: 20px;
+    padding-right: 20px;
+    text-align: justify;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 16pt;
+}
+
+.equipo{
+    width: 100%;
+    height: auto;
+    min-height: 100%;
+    background-color: rgb(98, 178, 252);
+    overflow: auto;
+}
+
+.equipo > h3{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    text-align: center;
+    color: #ffffff;
+    font-size: 40pt;
+}
+
+.empleado{
+    display: inline-flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    flex-basis: 30%;
+    border: 2px solid #333333;
+    border-radius: 5px;
+    margin: 15px;
+    width: 20%;
+    height: 60%;
+    background-color: #ffffff;
+    justify-content:flex-start;
+    align-items: center;
+    overflow: auto;
+}
+
+.empleado > img{
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    padding-top: 5px;
+}
+
+.empleado > h4{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    text-align: center;
+    color: #041adb;
+    font-size: 14pt;
+}
+
+.novedades{
+    display: grid;
+    grid: auto-flow / repeat(4, 25%);
+    width: 100%;
+    height: 100%;
+    background-color: rgb(98, 178, 252);
+    overflow: auto;
+}
+
+.producto:nth-last-child(1){
+    grid-area: 3/2;
+}
+
+.producto:nth-last-child(2){
+    grid-area: 3/3;
+}
+
+.novedades .producto:hover{
+    scale: 1.05;
+}
+
+
