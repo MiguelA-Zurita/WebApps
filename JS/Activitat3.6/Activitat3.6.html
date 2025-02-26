@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List</title>
+    <link href="CSS/Styles.css" rel="STYLESHEET" type="text/css">
+    <script src="JS/Activitat3.6.js" async defer></script>
+</head>
+<body>
+    <header>
+        
+    </header>
+    <main>
+        <section>
+            <h1>To-Do List</h1>
+            <div>
+                <input type="text" name="task" id="task" placeholder="Type a new task...">
+                <button id="addTask" onclick="addTask()">Add Task</button>
+            </div>
+                <button id="deleteAllCompletedTasks" onclick="deleteAllCompletedTasks()">Delete all completed tasks</button>
+            <div>
+                <h2>Here goes all tasks</h2>
+                <div id="strawberry">
+                    <div class="line"></div>
+                    <div class="line"></div>
+                    <div class="line"></div>
+                </div>
+                <ul class="inactive" id="filterList">
+                    <li><label for="all">All</label><input type="radio" name="filter" value="all" id="all" oninput="filter(event)"></li>
+                    <li><label for="active">Active</label><input type="radio" name="filter" value="active" id="active" oninput="filter(event)"></li>
+                    <li><label for="completed">Completed</label><input type="radio" name="filter" value="completed" id="completed" oninput="filter(event)"></li>
+                </ul>
+            </div>
+            <ul id="taskList">
+
+            </ul>
+        </section>
+    </main>
+    <footer>
+
+    </footer>
+</body>
+</html>
