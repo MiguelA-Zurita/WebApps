@@ -31,7 +31,7 @@ formulario.addEventListener("submit", function(event){
         comentarioAnadido.innerText = textoComentario.toLowerCase();
         comentarioAnadido.className = "comentario";
         document.querySelector("div").appendChild(comentarioAnadido);
-        formulario.submit();
+        formulario.reset();
     }
 })
 
