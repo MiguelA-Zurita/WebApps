@@ -5,6 +5,7 @@ html, body{
     min-width: 100%;
     height: auto;
     font-family: Arial, Helvetica, sans-serif;
+    overflow: auto;
 }
 
 main{
@@ -90,7 +91,6 @@ p{
     justify-content: space-between;
     align-items: center;
     cursor: pointer;
-    /* Add more styling as per your requirement */
   }
   
 
@@ -115,6 +115,14 @@ p{
     display: none;
   }
 
+  #filterList{
+    position: absolute;
+    width: 125px;
+    height: 75px;
+    background-color: #fff;
+  }
+
   #filterList li{
+    width: 90%;
     background-color: #fff;
   }

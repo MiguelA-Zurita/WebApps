@@ -50,14 +50,38 @@ strawberry.addEventListener('click',function(event){
 
 function filter(event){
     let eleccionFiltrado = event.target;
+    let allTasks = taskList.childNodes;
+    let completedTasks = document.getElementsByClassName('completedTask');
+    let activeTasks = document.getElementsByClassName('task');
     switch(eleccionFiltrado.value){
         case ("all"):
-            let allTasks = taskList.childNodes;
-            for(i = allTasks-1; i>=0; i--){
+            for(i = allTasks.length-1; i>=0; i--){
                 let task = allTasks[i];
-                task.style.display = flex;
+                task.style.display = "flex";
             }
+            break;
+
         case("active"):
+            for(i = activeTasks.length-1; i>=0; i--){
+                let task = activeTasks[i];
+                task.style.display = "flex";
+            }
+            
+            for(i = completedTasks.length-1; i>=0; i--){
+                let task = completedTasks[i];
+                task.style.display = "none";
+            }
+            break;
+
         case("completed"):
+            for(i = activeTasks.length-1; i>=0; i--){
+                let task = activeTasks[i];
+                task.style.display = "none";
+            }
+            for(i = completedTasks.length-1; i>=0; i--){
+                let task = completedTasks[i];
+                task.style.display = "flex";
+            }
+            break;
     }
 }
