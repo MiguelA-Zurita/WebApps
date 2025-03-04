@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Activitat3.9</title>
+    <link rel="stylesheet" href="CSS/Styles.css">
+</head>
+<body>
+    <header>
+        <h1>Activitat3.9</h1>
+    </header>
+    <main>
+        <h2>Image gallery</h2>
+        <div>
+            <h3>Add Image</h3>
+            <label for="url">Insert the URL of an image:</label>
+            <input type="url" id="url" name="url" placeholder="Type an URL...">
+            <button id="add" onclick="addImage()">Add</button>
+        </div>
+        <div>
+            <h3>Images</h3>
+            <button id="deleteAllImages" onclick="deleteAllImages()">Delete all images</button>
+            <div id="images">
+                <!-- Images will be added here -->
+            </div>
+        </div>
+        
+    </main>
+    <footer>
+
+    </footer>
+    <script src="JS/Script.js"></script>
+</body>
+</html>
