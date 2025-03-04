@@ -55,7 +55,7 @@ function filter(event){
     let activeTasks = document.getElementsByClassName('task');
     switch(eleccionFiltrado.value){
         case ("all"):
-            for(i = allTasks.length-1; i>=0; i--){
+            for(i = allTasks.length-1; i>0; i--){
                 let task = allTasks[i];
                 task.style.display = "flex";
             }
