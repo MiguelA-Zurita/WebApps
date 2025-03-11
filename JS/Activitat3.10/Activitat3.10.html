@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Activitat 3.10</title>
+    <link rel="stylesheet" href="CSS/Styles.css" type="text/css">
+</head>
+<body>
+    <header>
+        <h1>Guess the number</h1>
+    </header>
+    <main>
+        <section id="startmenu">
+            <h2>Difficulty:</h2>
+            <select name="difficulty">
+                <option selected>Choose a difficulty</option>
+                <option value="easy">Easy</option>
+                <option value="normal">Normal</option>
+                <option value="hard">Hard</option>
+            </select>
+            <button onclick="validateDifficulty()">Start!</button>
+        </section>
+        <section id="playmenu">
+            <h2>Guess the number I'm thinking</h2>
+            <p id="minmax"></p>
+            <input type="number" min="1">
+            <button onclick="validateNumber()">Guess!</button>
+            <p id="hint"></p>
+        </section>
+        <section id="winnermenu">
+            <h2>You are a winner!</h2>
+            <p>Click the button to start again or reload the page!</p>
+            <button onclick="restart()">Play again</button>
+        </section>
+    </main>
+    <footer>
+
+    </footer>
+    <script src="JS/Script.js"></script>
+</body>
+</html>
