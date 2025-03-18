@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Activitat 3.11</title>
+    <link href="css/Styles.css" rel="STYLESHEET" type="text/css">
+    <script src="js/Script.js" async defer></script>
+</head>
+<body>
+    <header>
+        <h1><span class="azulVago">Tres</span> <span class="amarilloVago">va</span><span class="rojoVago">gos</span></h1>
+        <p>Tu buscador de vuelos eficiente</p>
+    </header>
+    <main>
+        <h2>Busca tu vuelo</h2>
+        <form id="formulario" method="post">
+            <label for="origen">Origen</label>
+            <input type="text" name="origen" id="origen" required>
+            <label for="origen">Destino</label>
+            <input type="text" name="destino" id="destino" required>
+            <label for="origen">Fecha de ida</label>
+            <input type="date" name="fechaida" id="fechaida" required>
+            <label for="origen">Fecha de vuelta</label>
+            <input type="date" name="fechavuelta" id="fechavuelta" required>
+            <label for="origen">Adultos</label>
+            <input type="number" name="numadultos" id="numadultos" required>
+            <label for="origen">Niños</label>
+            <input type="number" name="numninos" id="numninos" required>
+            <label for="descuentos">Descuentos</label>
+            <select name="descuentos" id="descuentos">
+                <option selected>Selecciona un descuento</option>
+                <option value="residente">Descuento residentes</option>
+                <option value="familianumerosa">Descuento Familia numerosa</option>
+            </select>
+            <button type="submit"></button>
+        </form>
+    </main>
+    <footer>
+
+    </footer>
+</body>
+</html>
