@@ -10,10 +10,12 @@ const etiquetaElementos = ["origen", "destino", "adultos", "infants", "fechainic
 
 const serializer = new XMLSerializer();
 
+var isJSON = false;
+
 
 //TODO: terminar la función
-function cercarDisponibilitat(){
-    if (!validateCampos()){
+function cercarDisponibilitat() {
+    if (!validateCampos()) {
         alert("Tienes un campo vacío o la fecha errónea!");
         return
     }
@@ -22,43 +24,73 @@ function cercarDisponibilitat(){
     mostrarVuelos();
 }
 
-function convertir(){
+function convertir() {
+    if (!isJSON) {
+            let xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    let xmlDoc = this.responseXML;
+                    let jsonSerializado = '{';
+                    let busquedas = xmlDoc.getElementsByTagName("busqueda");
+                    for (let i = 0; i < busquedas.length; i++) {
+                        let busqueda = alumnes[i];
+                        let nodoValue = busqueda.getElementsByTagName(etiquetaElementos[i])[0].textContent;
+                        let nodoNombre = etiquetaElementos[i];
+                        jsonSerializado += `"${nodoNombre}": "${nodoValue}"`
+                        if (i = busquedas.length-1){
+                            jsonSerializado += "}";
+                        } else{
+                            jsonSerializado += ","
+                        }
+                    }
+                    document.getElementById("conversio").textContent = jsonSerializado;
+                }
+                if(this.status == 404){
+                    document.getElementById("conversio").textContent = "No se ha encontrado el XML disponibilitat.xml!";
+                }
+            };
+            xhttp.open("GET", "disponibilitat.xml", true);
+            xhttp.send();
+    }
+    else{
 
+    }
 }
 
-function validateCampos(){
+function validateCampos() {
     return campoOrigen.value !== '' &&
-    campoDestino.value !== '' &&
-    campoAdultos.value !== '' &&
-    campoInfants.value !== '' &&
-    campoFechaInicio.value !== '' &&
-    campoFechaFin.value !== '' &&
-    campoFechaFin.value >= campoFechaInicio.value;
+        campoDestino.value !== '' &&
+        campoAdultos.value !== '' &&
+        campoInfants.value !== '' &&
+        campoFechaInicio.value !== '' &&
+        campoFechaFin.value !== '' &&
+        campoFechaFin.value >= campoFechaInicio.value;
 }
 
-function crearXmlBusqueda(){
+function crearXmlBusqueda() {
     let xmlString = "<busqueda></busqueda>"
-    var parser = new DOMParser();  
+    var parser = new DOMParser();
     let xmlDoc = parser.parseFromString(xmlString, "application/xml");
     const root = xmlDoc.getElementsByTagName("busqueda")[0];
-    for(i=0; i<arrayElementos.length; i++){
+    for (i = 0; i < arrayElementos.length; i++) {
         let nodo = xmlDoc.createElement(etiquetaElementos[i]);
         nodo.textContent = arrayElementos[i].value
         root.appendChild(nodo);
     }
+    guardarDisponibilidad(xmlDoc);
     let xmlSerializado = serializer.serializeToString(xmlDoc);
     document.getElementById("disponibilitat").textContent = formateoXML(xmlSerializado);
 }
 
-function mostrarHoteles(){
+function mostrarHoteles() {
     let xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function() {
+    xhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
             let xmlDoc = this.responseXML;
             let xmlString = "";
             Array.from(xmlDoc.getElementsByTagName("desti")).forEach(nodo => {
-                if(nodo.childNodes[0].nodeValue == campoDestino.value){
-                   xmlString += serializer.serializeToString(nodo.parentNode);
+                if (nodo.childNodes[0].nodeValue == campoDestino.value) {
+                    xmlString += serializer.serializeToString(nodo.parentNode);
                 }
             });
             document.getElementById("resultatsHotels").textContent = xmlString;
@@ -68,21 +100,38 @@ function mostrarHoteles(){
     xhttp.send();
 }
 
-function mostrarVuelos(){
+function mostrarVuelos() {
     let xmlhttp = new XMLHttpRequest();
-        xmlhttp.onload = function() {
-            let vuelos = JSON.parse(this.responseText);
-            let resultado = "";
-            for (let vuelo of vuelos) {
-                if (vuelo.origen == campoOrigen.value && vuelo.desti == campoDestino.value) {
-                    resultado += `${vuelo.origen} hacia ${vuelo.desti} con Precio: ${vuelo.preu}\n`;
-                }
+    xmlhttp.onload = function () {
+        let vuelos = JSON.parse(this.responseText);
+        let resultado = "";
+        for (let vuelo of vuelos) {
+            if (vuelo.origen == campoOrigen.value && vuelo.desti == campoDestino.value) {
+                resultado += `${vuelo.origen} hacia ${vuelo.desti} con Precio: ${vuelo.preu}\n`;
             }
-            document.getElementById("resultatsVols").textContent = resultado || "No se encontraron vuelos.";
+        }
+        document.getElementById("resultatsVols").textContent = resultado || "No se encontraron vuelos.";
 
     };
     xmlhttp.open("GET", "vols.json");
     xmlhttp.send();
+}
+
+function guardarDisponibilidad(xmlDoc) {
+    const xmlString = serializer.serializeToString(xmlDoc);
+
+    // Crear un blob (arxiu binari) per a poder descarregar l'xml
+    const blob = new Blob([xmlString], { type: 'application/xml' });
+    const url = URL.createObjectURL(blob);
+
+    // Crear un enllaç i simular el clic per descarregar
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = 'disponibilitat.xml';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
 }
 
 function formateoXML(xmlString) {
@@ -101,8 +150,8 @@ function formateoXML(xmlString) {
         if (
             lineaTrim.startsWith("<") &&
             !lineaTrim.startsWith("</") &&
-            !lineaTrim.endsWith("/>") && 
-            !lineaTrim.includes("</")   
+            !lineaTrim.endsWith("/>") &&
+            !lineaTrim.includes("</")
         ) {
             pad += 1;
         }
