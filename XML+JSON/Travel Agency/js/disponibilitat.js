@@ -33,7 +33,7 @@ function convertir() {
         return;
     }
     if (isFirst) {
-        let jsonSerializado = '{';
+        let jsonSerializado = '[{';
         let resultado = null;
         
         let xmlDoc = parser.parseFromString(dataDoc.textContent, 'application/xml');
@@ -47,38 +47,57 @@ function convertir() {
                 if (i < arrayElementos.length-1){
                     jsonSerializado += ",";
                 }
+                jsonSerializado += '\n';
             }
             if (i < busquedas.length-1){
                 jsonSerializado += ",";
             } else{
-                jsonSerializado += "}";
+                jsonSerializado += "}]";
             }
         }
-        
-    
         resultado = JSON.parse(jsonSerializado);
-        document.getElementById("conversio").textContent = JSON.stringify(resultado);
+        document.getElementById("conversio").textContent = JSON.stringify(resultado, null, 2);
         isJSON = true;
         isFirst = false;
         return;
     }
     if(isJSON){
-        let jsonStringified = document.getElementById("conversio");
+        let jsonStringified = document.getElementById("conversio").textContent;
         let jsonDoc = JSON.parse(jsonStringified);      
-        let xmlString = '<busqueda>\n';
+        let xmlString = '<busquedas>\n';
         jsonDoc.forEach(busqueda => {
-            xmlString += `  <origen>${busqueda.origen}</origen>\n`;
-            xmlString += `  <destino>${busqueda.destino}</destino>\n`;
-            xmlString += `  <adultos>${busqueda.adultos}</adultos>\n`;
-            xmlString += `  <infants>${busqueda.infants}</infants>\n`;
-            xmlString += `  <fechainicio>${busqueda.fechainicio}</fechainicio>\n`;
-            xmlString += `  <fechafin>${busqueda.fechafin}</fechafin>\n`;
-            xmlString += `</busqueda>`;
+        xmlString += `  <busqueda>\n`;
+            xmlString += `      <origen>${busqueda.origen}</origen>\n`;
+            xmlString += `      <destino>${busqueda.destino}</destino>\n`;
+            xmlString += `      <adultos>${busqueda.adultos}</adultos>\n`;
+            xmlString += `      <infants>${busqueda.infants}</infants>\n`;
+            xmlString += `      <fechainicio>${busqueda.fechainicio}</fechainicio>\n`;
+            xmlString += `      <fechafin>${busqueda.fechafin}</fechafin>\n`;
+            xmlString += `  </busqueda>\n`
         });
+        xmlString += ` </busquedas>\n`;
         document.getElementById("conversio").textContent = xmlString;
         isJSON = false;
-    }else{
+    }
+    else{
+        let xmlDoc = parser.parseFromString(document.getElementById("conversio").textContent, "application/xml");
+        let busquedas = xmlDoc.getElementsByTagName("busqueda");
+        let jsonSerializado = [];
 
+        for (let i = 0; i < busquedas.length; i++) {
+            let busqueda = busquedas[i];
+            let obj = {
+                origen: busqueda.getElementsByTagName("origen")[0]?.textContent || "",
+                destino: busqueda.getElementsByTagName("destino")[0]?.textContent || "",
+                adultos: busqueda.getElementsByTagName("adultos")[0]?.textContent || "",
+                infants: busqueda.getElementsByTagName("infants")[0]?.textContent || "",
+                fechainicio: busqueda.getElementsByTagName("fechainicio")[0]?.textContent || "",
+                fechafin: busqueda.getElementsByTagName("fechafin")[0]?.textContent || ""
+            };
+            jsonSerializado.push(obj);
+        }
+    document.getElementById("conversio").textContent = JSON.stringify(jsonSerializado, null, 2);
+    isJSON = true;
     }
 }
 
@@ -94,13 +113,15 @@ function validateCampos() {
 
 function crearXmlBusqueda() {
     document.getElementById("disponibilitat").textContent = '';
-    let xmlString = "<busqueda></busqueda>"
+    let xmlString = "<busquedas></busquedas>"
     let xmlDoc = parser.parseFromString(xmlString, "application/xml");
-    const root = xmlDoc.getElementsByTagName("busqueda")[0];
+    const root = xmlDoc.getElementsByTagName("busquedas")[0];
+    let nodo = xmlDoc.createElement("busqueda");
+    root.appendChild(nodo);
     for (let i = 0; i < arrayElementos.length; i++) {
-        let nodo = xmlDoc.createElement(etiquetaElementos[i]);
-        nodo.textContent = arrayElementos[i].value
-        root.appendChild(nodo);
+        let atributo = xmlDoc.createElement(etiquetaElementos[i]);
+        atributo.textContent = arrayElementos[i].value
+        nodo.appendChild(atributo);
     }
     let xmlSerializado = serializer.serializeToString(xmlDoc);
     document.getElementById("disponibilitat").textContent = formateoXML(xmlSerializado);
@@ -116,7 +137,7 @@ function mostrarHoteles() {
             Array.from(xmlDoc.getElementsByTagName("desti")).forEach(nodo => {
                 if (nodo.childNodes[0].nodeValue == campoDestino.value) {
                     xmlString += serializer.serializeToString(nodo.parentNode);
-                }
+                }  
             });
             document.getElementById("resultatsHotels").textContent = xmlString;
         }
